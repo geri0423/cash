@@ -1,7 +1,7 @@
 package cash;
 
 import static java.lang.Math.round;
-
+import java.util.ArrayList;
 public class Cash {
 
     public static void main(String[] args) {
@@ -10,7 +10,8 @@ public class Cash {
         roundednum = round(num);
         int[] array1 = moneyCounter(roundednum);
         int[] array2 = {10, 5, 5, 20, 20, 20, 50};
-        if(compareArrays(array1, array2).equals(array1)){
+            boolean isCashRegisterValid = compareArrays(array1, array2).equals(array1);
+        if(isCashRegisterValid){
             for(int i = 0; i < array1.length; i++){
                 System.out.println(array1[i]);
             }
@@ -18,7 +19,10 @@ public class Cash {
     }
     public static int[] moneyCounter(int x) {
         int[] array = new int[7];
-        while (x != 0) {
+        
+        
+        for (int i = array.length; i > 0; i--) {
+           
             if (x > 500) {
                 array[0] += 1;
                 x -= 500;
@@ -51,13 +55,15 @@ public class Cash {
         }
         return array;
     }
-     public static int[] compareArrays(int[] array1, int[] array2) {
-        for (int i = 0; i < array1.length; i++) {
-            if (array1[i] > array2[i]) {
-                return array1;
+
+     public static int[] compareArrays(int[] optimalAmountOfCash, int[] cashRegister) {
+        
+         for (int i = 0; i < optimalAmountOfCash.length; i++) {
+            if (optimalAmountOfCash[i] > cashRegister[i]) {
+                return optimalAmountOfCash;
             }
         }
-        return array2;
+        return cashRegister;
     }
     
 
